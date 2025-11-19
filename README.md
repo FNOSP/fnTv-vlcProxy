@@ -1,4 +1,4 @@
-# fnTv-vlcProxy
+# fntv-proxy
 
 ## 📖 项目简介
 　　这是一个用Go语言编写的第三方飞牛影视客户端fntv-client-multiplatform项目的VLC播放器代理桥接程序，程序充当代理角色，同时兼容飞牛影视的HTTP及HTTPS连接请求，用于解决调用VLC播放器连接飞牛影视服务器时不能传递如cookie等自定义请求头的问题。
