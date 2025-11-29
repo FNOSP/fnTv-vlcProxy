@@ -45,13 +45,14 @@ go build -o vlc-proxy
 
 ### 🔧 设置代理信息
 
-发送POST请求到`/proxyInfo`接口，参数：
+发送POST请求到`/proxy/info`接口，请求体为JSON格式：
+
 - `url`: 目标服务器地址（如：http://192.168.1.200:5666）
 - `cookie`: Cookie信息（如：Trim-MC-token=2a075b3438764b4da9e772c66a759548; lastLoginUsername=admin）
 
 示例：
 ```bash
-curl -X POST -d "url=http://192.168.1.200:5666&cookie=Trim-MC-token=2a075b3438764b4da9e772c66a759548; lastLoginUsername=admin" http://127.0.0.1:1999/proxyInfo
+curl -X POST -H "Content-Type: application/json" -d '{"url": "http://192.168.1.200:5666", "cookie": "Trim-MC-token=2a075b3438764b4da9e772c66a759548; lastLoginUsername=admin"}' http://127.0.0.1:1999/proxy/info
 ```
 
 ### 👁 获取代理参数
