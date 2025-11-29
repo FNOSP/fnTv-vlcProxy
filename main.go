@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"log"
@@ -101,27 +102,29 @@ func handleProxyInfo(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// 解析表单数据
-	if err := r.ParseForm(); err != nil {
-		http.Error(w, "解析表单数据失败", http.StatusBadRequest)
+	// 解析请求体中的JSON数据
+	var requestData struct {
+		URL    string `json:"url"`
+		Cookie string `json:"cookie"`
+	}
+
+	if err := json.NewDecoder(r.Body).Decode(&requestData); err != nil {
+		http.Error(w, "解析请求体失败: "+err.Error(), http.StatusBadRequest)
 		return
 	}
 
-	urlParam := r.FormValue("url")
-	cookieParam := r.FormValue("cookie")
-
-	if urlParam == "" {
+	if requestData.URL == "" {
 		http.Error(w, "url参数不能为空", http.StatusBadRequest)
 		return
 	}
 
 	// 存储代理信息到全局变量
 	proxyInfoLock.Lock()
-	proxyInfo.URL = urlParam
-	proxyInfo.Cookie = cookieParam
+	proxyInfo.URL = requestData.URL
+	proxyInfo.Cookie = requestData.Cookie
 	proxyInfoLock.Unlock()
 
-	log.Printf("更新代理信息: URL=%s, Cookie=%s", urlParam, cookieParam)
+	log.Printf("更新代理信息: URL=%s, Cookie=%s", requestData.URL, requestData.Cookie)
 
 	w.Header().Set("Content-Type", "application/json")
 	fmt.Fprintf(w, `{"status": "success", "message": "代理信息已更新"}`)
