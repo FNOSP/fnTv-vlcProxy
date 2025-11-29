@@ -45,7 +45,7 @@ func main() {
 	mux := http.NewServeMux()
 
 	// 设置路由
-	mux.HandleFunc("/proxyInfo", handleProxyInfo)
+	mux.HandleFunc("/proxy/info", handleProxyInfo)
 	mux.HandleFunc("/proxyGet", handleProxyGet)
 	mux.HandleFunc("/", handleVLCRequest)
 
@@ -127,7 +127,7 @@ func handleProxyInfo(w http.ResponseWriter, r *http.Request) {
 	log.Printf("更新代理信息: URL=%s, Cookie=%s", requestData.URL, requestData.Cookie)
 
 	w.Header().Set("Content-Type", "application/json")
-	fmt.Fprintf(w, `{"status": "success", "message": "代理信息已更新"}`)
+	fmt.Fprintf(w, `{"code": 0, "status": "success", "message": "代理信息已更新", "data": true}`)
 }
 
 // 获取代理信息请求
