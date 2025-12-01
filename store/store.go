@@ -3,7 +3,7 @@ package store
 import (
 	"sync"
 
-	"fn-tv-vlc-convert-url/model"
+	"fntv-proxy/model"
 )
 
 var (

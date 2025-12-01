@@ -1,4 +1,4 @@
-module fn-tv-vlc-convert-url
+module fntv-proxy
 
 go 1.21
 

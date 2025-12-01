@@ -5,9 +5,9 @@ import (
 	"log"
 	"net/http"
 
-	"fn-tv-vlc-convert-url/config"
-	"fn-tv-vlc-convert-url/handler"
-	"fn-tv-vlc-convert-url/logger"
+	"fntv-proxy/config"
+	"fntv-proxy/handler"
+	"fntv-proxy/logger"
 )
 
 func main() {

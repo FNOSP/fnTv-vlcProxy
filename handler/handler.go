@@ -9,9 +9,9 @@ import (
 	"net/url"
 	"strings"
 
-	"fn-tv-vlc-convert-url/logger"
-	"fn-tv-vlc-convert-url/model"
-	"fn-tv-vlc-convert-url/store"
+	"fntv-proxy/logger"
+	"fntv-proxy/model"
+	"fntv-proxy/store"
 )
 
 // HandleProxyInfo 处理代理信息设置请求
